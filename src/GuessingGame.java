@@ -7,10 +7,13 @@ public class GuessingGame {
         Scanner scanner = new Scanner(System.in);
         int secretNumber;
         int attempts = 3;
-        // Загадываем число
-        secretNumber = random.nextInt(10); // Генерируем случайное число от 0 до 9
+        boolean playAgain = true;
 
-        // Цикл для обработки попыток угадывания числа
+        while (playAgain) {
+            // Загадываем число
+            secretNumber = random.nextInt(10); // Генерируем случайное число от 0 до 9
+
+            // Цикл для обработки попыток угадывания числа
         while (attempts > 0) {
             System.out.println("У вас осталось " + attempts + " попыток.");
             System.out.print("Введите ваше предположение: ");
@@ -28,6 +31,19 @@ public class GuessingGame {
 
             attempts--; // Уменьшаем количество оставшихся попыток
         }
+
+        if (attempts == 0) {
+            System.out.println("К сожалению, вы не угадали число. Загаданное число было: " + secretNumber);
+        }
+
+        // Запрос на повтор игры
+        System.out.print("Повторить игру еще раз? 1 – да / 0 – нет: ");
+        int choice = scanner.nextInt();
+        playAgain = (choice == 1);
+        attempts = 3; // Сбрасываем количество попыток для новой игры
+    }
+
+        System.out.println("Спасибо за игру! До свидания.");
     }
 }
 
